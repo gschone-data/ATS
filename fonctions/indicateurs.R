@@ -1,26 +1,32 @@
-calcul_BB<-fonction(num,df){
-  start_index <- num  # Indice à partir duquel on commence
-  x <- 20    
-  if (start_index + x - 1 <= nrow(df)) {
+calcul_BB<-function(row_id,df,nb_periode=20){
+
+  df <- df %>%
+    fill(Close, .direction = "down")->df
+  df |> rowid_to_column()->df
+  debut=  row_id# Indice à partir duquel on commence
+   if (nb_periode<=row_id) {
     # Sous-ensemble des x lignes à partir du start_index
-    subset_df <- df[start_index:(start_index + x - 1), ]
+    subset_df <- df[(debut-nb_periode+1):debut, ]
     
-    # Calcul de la moyenne pour chaque colonne
-    mean_values <- colMeans(subset_df)
-    
+  # "ecart type du close"
+    SD=sd(subset_df$Close)
+    m20=mean(subset_df$Close)
+    u<-m20+2*SD
+    l<-m20-2*SD
     # Affiche les moyennes des colonnes
-    print(mean_values)
-  } else {
-    print("Erreur : Les indices dépassent le nombre de lignes du data frame")
-  }
+    } else {
+  mean_values <-NA
+  m20<-NA
+  u<-NA
+  l<-NA
+    }
   
-  
-  
-  
-  
-  
-  return (l,u,m)
+
+  return (c(l,u,m20))
 }
+
+
+calcul_BB(1,df)
 class(`EURUSD=X`)
 EURUSD=as.data.frame(`EURUSD=X`)
 EURUSD$date=rownames(EURUSD)
