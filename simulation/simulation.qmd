@@ -1,0 +1,117 @@
+---
+title: "Simulations"
+author: "gschone-data"
+format: html
+html:
+  code-fold: true
+  code-summary: code
+editor: visual
+---
+
+```{r}
+#| code-fold: false
+#| echo: false
+#| message: false
+
+source("~/ATS/.Rprofile")
+```
+
+## Module simulation
+
+```{r}
+#| code-fold: true
+
+winrate=0.6
+winimpact = 0.02
+looseimpact=-0.02
+capital_initial=4000
+nb_trade=1000
+
+```
+
+::: panel-tabset
+## trade croissant
+
+
+
+```{r}
+#| code-fold: true
+
+
+set.seed(1234)
+n<-nb_trade
+# taille de l'échantillon
+p<-winrate# paramètre de la loi de Bernoulli
+esp<-p
+var<-p*(1-p)
+ech<-rbinom(n,size = 1,prob = p) # size = 1 correspond à la loi de Bernoulli
+
+df<-as.data.frame(ech)
+df |> mutate(
+  impact=case_when(ech==1~winimpact,ech==0~looseimpact),
+  capital_total = cumprod(1 + impact ) * capital_initial,
+  gain_trade = capital_total - lag(capital_total, default = capital_initial))->df
+
+df |> mutate(row=row_number())->df
+head(df,10)
+```
+
+
+```{r}
+#| code-fold: true
+ggplot(df, aes(x = row, y = capital_total)) +
+  geom_line(color = "blue") +
+  labs(
+    title = "Évolution du Capital Total",
+    x = "Numéro de Trade",
+    y = "Capital Total"
+  ) +
+  theme_minimal()
+
+
+
+```
+
+
+## trade fixe
+
+
+```{r}
+#| code-fold: true
+
+
+set.seed(1234)
+n<- 1000  # taille de l'échantillon
+p<-0.6   # paramètre de la loi de Bernoulli
+esp<-p
+var<-p*(1-p)
+ech<-rbinom(n,size = 1,prob = p) # size = 1 correspond à la loi de Bernoulli
+
+
+
+df<-as.data.frame(ech)
+
+df |> mutate(
+  impact=case_when(ech==1~capital_initial*winimpact,ech==0~capital_initial*looseimpact),
+  capital_total = cumsum(impact) + capital_initial)->df
+
+df |> mutate(row=row_number())-> df
+head(df,10)
+```
+
+
+```{r}
+#| code-fold: true
+ggplot(df, aes(x = row, y = capital_total)) +
+  geom_line(color = "blue") +
+  labs(
+    title = "Évolution du Capital Total",
+    x = "Numéro de Trade",
+    y = "Capital Total"
+  ) +
+  theme_minimal()
+
+
+
+```
+:::
