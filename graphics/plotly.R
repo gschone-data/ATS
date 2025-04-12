@@ -45,11 +45,11 @@ generer_graphique <- function(symbole, periode) {
     )
   nb_ligne<-min(nrow(data_period),30)
   nb_boll<-min(nb_ligne,20)
-  
+  nb_m7<-min(nb_ligne,7)
   # Calcul des indicateurs SUR TOUTES LES DONNÉES
   data_tech <- data_period |> 
     mutate(
-      M7 = TTR::SMA(Close, 7),
+      M7 = TTR::SMA(Close, nb_m7),
       BB_up = TTR::BBands(Close, n = nb_boll, sd = 2)[, "up"],
       BB_dn = TTR::BBands(Close, n = nb_boll, sd = 2)[, "dn"],
       M20=TTR::SMA(Close, nb_boll),
@@ -74,7 +74,7 @@ generer_graphique <- function(symbole, periode) {
     )
   nb_ok=T
   if (nb_ligne<20){nb_ok=F;data_tech$BB_up=NA;data_tech$BB_dn=NA;data_tech$M20=NA}
-  
+  if (nb_ligne<7){data_tech$m7=NA}
   # Ajout du texte pour le tooltip
   data_tech <- data_tech |> 
     mutate(
@@ -111,7 +111,7 @@ generer_graphique <- function(symbole, periode) {
     geom_point(aes(y = SAR, color = color_SAR),shape = 18, size = 1) +
 
     labs(
-      title=paste(symbole,"-", periode),
+      title=paste(periode),
       x=NULL,
       y=NULL
     ) +
@@ -133,4 +133,4 @@ generer_graphique <- function(symbole, periode) {
   }
 
 # Exemple d'utilisation pour différentes périodes
-generer_graphique("ALNOV.PA", "weekly")
+#generer_graphique("ALNOV.PA", "weekly")

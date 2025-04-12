@@ -1,0 +1,66 @@
+---
+title: "{{< meta params.actif >}}"
+format: 
+  html:  
+    self-contained: false
+params:
+  actif: null
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+source("../graphics/plotly.R")
+actif=params$actif
+```
+
+::::::::: {layout="[[1,1,1],[2,2,2]]"}
+::: {#row-1 .g-col-4}
+```{r}
+p<-generer_graphique(actif,"daily")
+p
+
+```
+:::
+
+::: {#row-1 .g-col-4}
+```{r}
+p<-generer_graphique(actif,"weekly")
+p
+
+```
+:::
+
+::: {#row-1 .g-col-4}
+```{r}
+p<-generer_graphique(actif,"monthly")
+p
+
+```
+:::
+
+::: {#row-2 .g-col-4}
+```{r}
+p<-generer_graphique(actif,"annual")
+p
+
+```
+:::
+
+::: {#row-2 .g-col-4}
+```{r}
+p<-generer_graphique(actif,"semiannual")
+p  
+   
+```
+:::
+
+::: {#row-2 .g-col-4}
+```{r}
+p<-generer_graphique(actif,"quarterly")
+p      
+```
+:::
+:::::::::
