@@ -1,10 +1,16 @@
 ---
-title: "{{< meta params.actif >}}"
+title: "`r params$actif`"
 format: 
   html:  
     self-contained: false
+    grid:
+      sidebar-width: 300px   # Largeur de la barre latérale (si utilisée)
+      body-width: 1200px     # Largeur du contenu principal
+      margin-width: 0px      # Largeur des marges (réduite à zéro)
+      gutter-width: 1rem     # Espacement entre les colonnes
+
 params:
-  actif: null
+  actif: "EURUSD=X"
 ---
 
 ```{r}
@@ -12,7 +18,7 @@ params:
 #| warning: false
 #| message: false
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-source("../graphics/plotly.R")
+source("graphics/plotly.R")
 actif=params$actif
 ```
 

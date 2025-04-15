@@ -8,17 +8,18 @@ library(patchwork)
 
 generer_graphique <- function(symbole, periode) {
   # Téléchargement des données
-  getSymbols(symbole, auto.assign = TRUE)
-  
+  tmp<-getSymbols(symbole, auto.assign = TRUE)
+  symbole_bis=symbole
+  if(substr(symbole,1,1)=="^"){symbole_bis=substr(symbole,2,nchar(symbole))}
   # Préparation des données
-  data <- get(symbole) |> 
+  data <- get(symbole_bis) |> 
     fortify() |> 
     rename(
       Date = Index,
-      Open = paste0(symbole, ".Open"),
-      High = paste0(symbole, ".High"),
-      Low = paste0(symbole, ".Low"),
-      Close = paste0(symbole, ".Close")
+      Open = paste0(symbole_bis, ".Open"),
+      High = paste0(symbole_bis, ".High"),
+      Low = paste0(symbole_bis, ".Low"),
+      Close = paste0(symbole_bis, ".Close")
     ) |> 
     mutate(Date = as.Date(Date)) |> 
     filter(complete.cases(Open, High, Low, Close))

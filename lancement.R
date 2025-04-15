@@ -7,10 +7,11 @@ library(stringr)
 symbols <- c("^FCHI", "^IXIC","^GDAXI",  "GC=F","SI=F","CL=F","EURUSD=X","USDJPY=X","GBPUSD=X","AUDUSD=X","USDCAD=X","USDCNY=X","USDCHF=X")
 
 
-symbols="GC=F"
+symbols="^FCHI"
+
 for (actif in symbols) {
   quarto_render(
-    input = "indus/quarto_ind.qmd",
+    input = "quarto_ind.qmd",
     output_file = "temp.html",
     execute_params = list(actif = actif)
   )
