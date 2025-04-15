@@ -1,3 +1,1 @@
-Pour un indice générer une page web avec les 6 graphes plotly
-créer une page de lancement avec la liste des tickers
-Good job !
+integrer dans deploy.yml le lancement avec l'ensemble des renames.
