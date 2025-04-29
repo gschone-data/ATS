@@ -22,7 +22,7 @@ jobs:
       
       - name: Install R packages
         run: |
-          install.packages(c("quarto", "rmarkdown", "dplyr","lubridate","TTR","plotly","patchwork","tidyverse")  # adapte selon tes besoins
+          install.packages(c("quarto","tidyverse","glue","purrr","stringr","quantmod","ggplot2","dplyr","lubridate","TTR","plotly","patchwork"))  # adapte selon tes besoins
         shell: Rscript {0}
 
       - name: Set up Quarto
