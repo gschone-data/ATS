@@ -1,0 +1,22 @@
+{
+  "quarto_ind.qmd": {
+    "FCHI.html": "483edc56",
+    "IXIC.html": "f1553532",
+    "GDAXI.html": "5f797c35",
+    "GCF.html": "2ac48274",
+    "SIF.html": "09a5c52c"
+  },
+  "indus/quarto_ind.qmd": {
+    "quarto_ind.html": "101a46e9",
+    "USDJPYX.html": "97834887",
+    "GBPUSDX.html": "84971e92",
+    "AUDUSDX.html": "cbd2153e",
+    "USDCADX.html": "0a903ec6",
+    "USDCNYX.html": "82d7c374",
+    "USDCHFX.html": "11eccd47"
+  },
+  "quarto_mod.qmd": {
+    "quarto_mod.html": "23def375",
+    "temp.html": "4ed2954a"
+  }
+}

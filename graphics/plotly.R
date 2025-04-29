@@ -5,7 +5,8 @@ library(lubridate)
 library(TTR)
 library(plotly)
 library(patchwork)
-
+#symbole="ALNOV.PA"
+#periode="weekly"
 generer_graphique <- function(symbole, periode) {
   # Téléchargement des données
   tmp<-getSymbols(symbole, auto.assign = TRUE)
@@ -77,22 +78,31 @@ generer_graphique <- function(symbole, periode) {
   if (nb_ligne<20){nb_ok=F;data_tech$BB_up=NA;data_tech$BB_dn=NA;data_tech$M20=NA}
   if (nb_ligne<7){data_tech$m7=NA}
   # Ajout du texte pour le tooltip
+  
+  
+  
+  #si devise round 4, sinon round 2
+  nb_round=2
+  if(grepl("X",symbole)==TRUE){
+    nb_round=4}
   data_tech <- data_tech |> 
     mutate(
       tooltip_text = paste0(
         "<b>Date :</b> ", Period,
-        "<br><b>Open :</b> ", round(Open, 2),
-        "<br><b>Close :</b> ", round(Close, 2),
-        "<br><b>High :</b> ", round(High, 2),
-        "<br><b>Low :</b> ", round(Low, 2),
-        "<br><b>M7 :</b> ", round(M7, 2),
-        "<br><b>M20 :</b> ", round(M20, 2),
-        "<br><b>Boll Sup :</b> ", round(BB_up, 2),
-        "<br><b>Boll Inf :</b> ", round(BB_dn, 2),
-        "<br><b>SAR :</b> ", round(SAR, 2)
+        "<br><b>Open :</b> ", round(Open, nb_round),
+        "<br><b>Close :</b> ", round(Close, nb_round),
+        "<br><b>High :</b> ", round(High, nb_round),
+        "<br><b>Low :</b> ", round(Low, nb_round),
+        "<br><b>M7 :</b> ", round(M7, nb_round),
+        "<br><b>M20 :</b> ", round(M20, nb_round),
+        "<br><b>Boll Sup :</b> ", round(BB_up, nb_round),
+        "<br><b>Boll Inf :</b> ", round(BB_dn, nb_round),
+        "<br><b>SAR :</b> ", round(SAR, nb_round)
       )
     )
   
+  oggy <- as.factor(data_tech$Period)[22]
+  jack <- as.factor(data_tech$Period)[9]
   
   # Création du graphique ggplot2
   p <- ggplot(data_tech,  aes(x = as.factor(Period),text=tooltip_text)) +
@@ -110,6 +120,10 @@ generer_graphique <- function(symbole, periode) {
     
     # SAR avec couleurs dynamiques
     geom_point(aes(y = SAR, color = color_SAR),shape = 18, size = 1) +
+    
+    #oggy et jack
+    geom_vline(xintercept = 23, color = "black", linetype = "solid", linewidth = 0.5,alpha=0.2) +
+    geom_vline(xintercept = 10, color = "black", linetype = "solid", linewidth = 0.5,alpha=0.2) +
 
     labs(
       title=paste(periode),
