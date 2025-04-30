@@ -1,0 +1,13 @@
+background-color: red;
+div.quarto-layout-panel {
+  min-width: 1200px;
+  max-width: 100%;
+  margin: auto;
+  overflow-x: auto;
+}
+div.quarto-layout-row {
+  min-width: 1200px;
+  max-width: 100%;
+  margin: auto;
+  overflow-x: auto;
+}
