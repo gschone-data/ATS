@@ -141,7 +141,7 @@ generer_graphique <- function(symbole, periode) {
       geom_segment(aes(y = lag(BB_dn), yend=BB_dn,x=x_pos-1,xend=x_pos, color = color_dn),linewidth = 0.6)}
   # Conversion en graphique interactif avec Plotly
  
-   ggplotly(p,tooltip="tooltip_text")
+   ggplotly(p,tooltip="tooltip_text",width = 386, height = 386)
     
   
   
