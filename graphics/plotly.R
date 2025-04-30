@@ -1,12 +1,8 @@
 library(quantmod)
 library(ggplot2)
 library(dplyr)
-library(lubridate)
-library(TTR)
 library(plotly)
-library(patchwork)
-#symbole="ALNOV.PA"
-#periode="weekly"
+
 generer_graphique <- function(symbole, periode) {
   # Téléchargement des données
   tmp<-getSymbols(symbole, auto.assign = TRUE)
@@ -48,8 +44,10 @@ generer_graphique <- function(symbole, periode) {
   nb_ligne<-min(nrow(data_period),30)
   nb_boll<-min(nb_ligne,20)
   nb_m7<-min(nb_ligne,7)
+  
   # Calcul des indicateurs SUR TOUTES LES DONNÉES
-  data_tech <- data_period |> 
+ 
+   data_tech <- data_period |> 
     mutate(
       M7 = TTR::SMA(Close, nb_m7),
       BB_up = TTR::BBands(Close, n = nb_boll, sd = 2)[, "up"],
@@ -148,4 +146,4 @@ generer_graphique <- function(symbole, periode) {
   }
 
 # Exemple d'utilisation pour différentes périodes
-#generer_graphique("ALNOV.PA", "weekly")
+generer_graphique("ALNOV.PA", "weekly")
