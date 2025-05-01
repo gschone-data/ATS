@@ -11,9 +11,5 @@ Imports:
     ggplot2,
     plotly,
     lubridate,
-    quantmod,
-    rmarkdown
-Suggests:
-    testthat,
-    knitr
+    quantmod
 License: MIT
