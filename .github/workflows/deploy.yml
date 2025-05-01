@@ -35,8 +35,24 @@ jobs:
       - name: Render site
         run: |
           quarto render --output-dir docs
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2 # Étape cruciale
         with:
-          path: docs
+          path: docs/ 
+          
+    
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2 # Pas de paramètre "path" ici
