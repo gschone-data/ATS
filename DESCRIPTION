@@ -1,0 +1,19 @@
+Package: ATS
+Type: Project
+Title: Analyse financière avec Quarto
+Version: 0.1.0
+Authors@R: 
+    person("Gilles", "Schone", email = "gillesschone@gmail.com", role = c("aut", "cre"))
+Description: Un projet d'analyse de données financières utilisant Quarto et R.
+Encoding: UTF-8
+Imports:
+    dplyr,
+    ggplot2,
+    plotly,
+    lubridate,
+    quantmod,
+    rmarkdown
+Suggests:
+    testthat,
+    knitr
+License: MIT

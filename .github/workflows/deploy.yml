@@ -23,12 +23,9 @@ jobs:
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
 
-      - name: Install R packages
-        run: |
-          install.packages(c("quarto", "rmarkdown", "dplyr","quantmod","ggplot2","plotly","lubridate")) 
-
-        shell: Rscript {0}
-
+      - name: Set up R dependancies
+        uses: r-lib/actions/setup-r-dependencies@v2  
+        
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
@@ -37,7 +34,7 @@ jobs:
           quarto render --output-dir docs/_site
           
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3 # Étape cruciale
+        uses: actions/upload-pages-artifact@v4 # Étape cruciale
         with:
           path: docs/_site
           name: gh-pages
@@ -55,4 +52,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4 # Pas de paramètre "path" ici
         with:
-          name: gh-pages
+          artifact_name: gh-pages
