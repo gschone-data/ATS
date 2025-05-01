@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Installer les dépendances système nécessaires
         run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev
@@ -34,12 +34,13 @@ jobs:
 
       - name: Render site
         run: |
-          quarto render --output-dir docs
+          quarto render --output-dir docs/_site
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3 # Étape cruciale
         with:
-          path: docs/ 
+          path: docs/_site
+          name: gh-pages
           
     
 
@@ -49,10 +50,7 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2 # Pas de paramètre "path" ici
+        uses: actions/deploy-pages@v4 # Pas de paramètre "path" ici
