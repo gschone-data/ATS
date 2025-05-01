@@ -11,3 +11,9 @@ div.quarto-layout-row {
   margin: auto;
   overflow-x: auto;
 }
+div.cell{
+  max-height: 450px;
+  margin: auto;
+  overflow: hidden;
+  
+}
