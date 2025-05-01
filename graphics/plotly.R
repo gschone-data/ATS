@@ -2,6 +2,7 @@ library(quantmod)
 library(ggplot2)
 library(dplyr)
 library(plotly)
+library(lubridate)
 
 generer_graphique <- function(symbole, periode) {
   # Téléchargement des données

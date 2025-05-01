@@ -25,7 +25,7 @@ jobs:
 
       - name: Install R packages
         run: |
-          install.packages(c("quarto", "rmarkdown", "dplyr","quantmod","ggplot2","plotly")) 
+          install.packages(c("quarto", "rmarkdown", "dplyr","quantmod","ggplot2","plotly","lubridate")) 
 
         shell: Rscript {0}
 
