@@ -4,11 +4,6 @@ format:
   html:  
     css: styles.css
     self-contained: false
-    grid:
-      sidebar-width: 300px   # Largeur de la barre latérale (si utilisée)
-      body-width: 1200px     # Largeur du contenu principal
-      margin-width: 0px      # Largeur des marges (réduite à zéro)
-      gutter-width: 1rem     # Espacement entre les colonnes
 ---
 
 
