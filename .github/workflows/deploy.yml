@@ -37,7 +37,7 @@ jobs:
           quarto render --output-dir docs
           
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2 # Étape cruciale
+        uses: actions/upload-pages-artifact@v4 # Étape cruciale
         with:
           path: docs/ 
           
