@@ -1,8 +1,9 @@
 name: Deploy Quarto Site to Pages
 
 on:
-  push:
-    branches: ["main"]
+  schedule:
+    - cron: '6 8 * * *'
+  
 
 permissions:
   contents: read
