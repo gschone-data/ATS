@@ -2,7 +2,7 @@ name: Deploy Quarto Site to Pages
 
 on:
   schedule:
-    - cron: '10 6 * * *'
+    - cron: '30 6 * * *'
   
 
 permissions:
