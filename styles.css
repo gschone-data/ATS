@@ -1,5 +1,11 @@
 background-color: red;
 div.quarto-layout-panel {
+  display: grid;
+  row-gap: 5px;
+  column-gap: 5px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   min-width: 1200px;
   max-width: 100%;
   margin: auto;
@@ -13,6 +19,7 @@ div.quarto-layout-row {
 }
 div.cell{
   max-height: 450px;
+  max-width: 450px;
   margin: auto;
   overflow: hidden;
  

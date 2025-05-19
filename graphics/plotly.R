@@ -4,23 +4,30 @@ library(dplyr)
 library(plotly)
 library(lubridate)
 
-generer_graphique <- function(symbole, periode) {
-  # Téléchargement des données
-  tmp<-getSymbols(symbole, auto.assign = TRUE)
+generer_graphique <- function(symbole, periode,toCache=F) {
   symbole_bis=symbole
   if(substr(symbole,1,1)=="^"){symbole_bis=substr(symbole,2,nchar(symbole))}
+  
+  # Téléchargement des données
+  
+  if(toCache==TRUE){
+    data<-readRDS("tempo/data.RDS")}
+  else{
+    tmp<-getSymbols(symbole, auto.assign = TRUE)
+    data <- get(symbole_bis) |> as.data.frame()
+    saveRDS(data,"tempo/data.RDS")
+  }
   # Préparation des données
-  data <- get(symbole_bis) |> 
-    fortify() |> 
+  data |>  
+    mutate(Date=row.names(data)) |> 
     rename(
-      Date = Index,
       Open = paste0(symbole_bis, ".Open"),
       High = paste0(symbole_bis, ".High"),
       Low = paste0(symbole_bis, ".Low"),
       Close = paste0(symbole_bis, ".Close")
     ) |> 
     mutate(Date = as.Date(Date)) |> 
-    filter(complete.cases(Open, High, Low, Close))
+    filter(complete.cases(Open, High, Low, Close))->data
   
   # Conversion de période
   data_period <- data |> 
@@ -81,9 +88,9 @@ generer_graphique <- function(symbole, periode) {
   
   
   #si devise round 4, sinon round 2
-  nb_round=2
-  if(grepl("X",symbole)==TRUE){
-    nb_round=4}
+  nb_round=4
+  if(grepl("\\^",symbole)==TRUE){
+    nb_round=2}
   data_tech <- data_tech |> 
     mutate(
       tooltip_text = paste0(
@@ -131,7 +138,7 @@ generer_graphique <- function(symbole, periode) {
     ) +
     
     scale_x_discrete(breaks = levels(as.factor(data_tech$Period))[seq(1, length(levels(as.factor(data_tech$Period))), by = 4L)])+
-    theme(axis.text.x = element_text(angle = 90, hjust = 1,size=6))+
+    theme(axis.text.x = element_text(angle = 90, hjust = 1,size=8))+
     theme(legend.position = "none")
   if(nb_ok==T){
     p<-p+
@@ -140,11 +147,11 @@ generer_graphique <- function(symbole, periode) {
       geom_segment(aes(y = lag(BB_dn), yend=BB_dn,x=x_pos-1,xend=x_pos, color = color_dn),linewidth = 0.6)}
   # Conversion en graphique interactif avec Plotly
  
-   ggplotly(p,tooltip="tooltip_text",width = 386, height = 386)
+   ggplotly(p,tooltip="tooltip_text")
     
   
   
   }
 
 # Exemple d'utilisation pour différentes périodes
-generer_graphique("ALNOV.PA", "weekly")
+generer_graphique("ALNOV.PA", "annual",toCache = T)

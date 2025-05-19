@@ -2,6 +2,7 @@
 title: "ANALYSE ATS"
 format: 
   html:  
+    page-layout: custom
     css: styles.css
     self-contained: false
 ---
@@ -40,7 +41,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -95,7 +96,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -150,7 +151,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -205,7 +206,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -260,7 +261,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -315,7 +316,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -370,7 +371,61 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"monthly")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"annual")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"semiannual")
+p  
+   
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"quarterly")
+p      
+```
+:::
+:::::::::
+## EURGBP
+
+```{r}
+actif="EURGBP=X"
+```
+
+::::::::: {layout="[[1,1,1],[2,2,2]]"}
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"daily")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -429,7 +484,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -484,7 +539,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -539,7 +594,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -594,7 +649,115 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"monthly")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"annual")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"semiannual")
+p  
+   
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"quarterly")
+p      
+```
+:::
+:::::::::
+## S&P 500
+
+```{r}
+actif="^GSPC"
+```
+
+::::::::: {layout="[[1,1,1],[2,2,2]]"}
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"daily")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"weekly",toCache = T)
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"monthly")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"annual")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"semiannual")
+p  
+   
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"quarterly")
+p      
+```
+:::
+:::::::::
+## IBEX
+
+```{r}
+actif="^IBEX"
+```
+
+::::::::: {layout="[[1,1,1],[2,2,2]]"}
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"daily")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -652,7 +815,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -707,7 +870,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -762,7 +925,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -817,7 +980,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"weekly")
+p<-generer_graphique(actif,"weekly",toCache = T)
 p
 
 ```
@@ -854,5 +1017,282 @@ p
 ```
 :::
 :::::::::
+::: 
 
+# ACTIONS
+
+::::::::::::::::::::::::::::::: panel-tabset
+## NOVA
+
+```{r}
+actif="ALNOV.PA"
+```
+
+::::::::: {layout="[[1,1,1],[2,2,2]]"}
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"daily")
+p
+
+```
 :::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"weekly",toCache = T)
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"monthly")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"annual")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"semiannual")
+p  
+   
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"quarterly")
+p      
+```
+:::
+:::::::::
+
+## ODET
+
+```{r}
+actif="ODET.PA"
+```
+
+::::::::: {layout="[[1,1,1],[2,2,2]]"}
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"daily")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"weekly",toCache = T)
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"monthly")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"annual")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"semiannual")
+p  
+   
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"quarterly")
+p      
+```
+:::
+:::::::::
+
+## THERANEXUS
+
+```{r}
+actif="ALTHX.PA"
+```
+
+::::::::: {layout="[[1,1,1],[2,2,2]]"}
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"daily")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"weekly",toCache = T)
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"monthly")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"annual")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"semiannual")
+p  
+   
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"quarterly")
+p      
+```
+:::
+:::::::::
+
+## COFACE
+
+```{r}
+actif="COFA.PA"
+```
+
+::::::::: {layout="[[1,1,1],[2,2,2]]"}
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"daily")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"weekly",toCache = T)
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"monthly")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"annual")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"semiannual")
+p  
+   
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"quarterly")
+p      
+```
+:::
+:::::::::
+## LYXOR ETF
+
+```{r}
+actif="PUST.PA"
+```
+
+::::::::: {layout="[[1,1,1],[2,2,2]]"}
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"daily")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"weekly",toCache = T)
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"monthly")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"annual")
+p
+
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"semiannual")
+p  
+   
+```
+:::
+
+::: g-col-4
+```{r}
+p<-generer_graphique(actif,"quarterly")
+p      
+```
+:::
+:::::::::
+::::::::::::::::::::::::::::::: 
