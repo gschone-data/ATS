@@ -1,8 +1,0 @@
-library(httr)
-library(jsonlite)
-library(alphavantager)
-library(quantmod)
-library(tidyverse)
-library(lubridate)
-library(plotly)
-library(purrr)

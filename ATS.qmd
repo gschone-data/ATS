@@ -49,7 +49,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -57,7 +57,7 @@ p
 
 ::: {#row-2 .g-col-4}
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -65,7 +65,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -73,7 +73,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -104,7 +104,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -112,7 +112,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -120,7 +120,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -128,7 +128,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -159,7 +159,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -167,7 +167,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -175,7 +175,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -183,7 +183,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -214,7 +214,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -222,7 +222,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -230,7 +230,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -238,7 +238,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -269,7 +269,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -277,7 +277,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -285,7 +285,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -293,7 +293,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -324,7 +324,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -332,7 +332,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -340,7 +340,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -348,7 +348,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -379,7 +379,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -387,7 +387,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -395,7 +395,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -403,7 +403,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -433,7 +433,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -441,7 +441,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -449,7 +449,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -457,7 +457,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -492,7 +492,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -500,7 +500,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -508,7 +508,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -516,7 +516,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -547,7 +547,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -555,7 +555,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -563,7 +563,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -571,7 +571,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -602,7 +602,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -610,7 +610,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -618,7 +618,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -626,7 +626,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -657,7 +657,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -665,7 +665,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -673,7 +673,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -681,7 +681,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -711,7 +711,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -719,7 +719,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -727,7 +727,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -735,7 +735,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -765,7 +765,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -773,7 +773,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -781,7 +781,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -789,7 +789,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -823,7 +823,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -831,7 +831,7 @@ p
 
 ::: {#row-2 .g-col-4}
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -839,7 +839,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -847,7 +847,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -878,7 +878,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -886,7 +886,7 @@ p
 
 ::: {#row-2 .g-col-4}
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -894,7 +894,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -902,7 +902,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -933,7 +933,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -941,7 +941,7 @@ p
 
 ::: {#row-2 .g-col-4}
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -949,7 +949,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -957,7 +957,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -988,7 +988,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -996,7 +996,7 @@ p
 
 ::: {#row-2 .g-col-4}
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -1004,7 +1004,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -1012,7 +1012,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -1047,7 +1047,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -1055,7 +1055,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -1063,7 +1063,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -1071,7 +1071,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -1102,7 +1102,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -1110,7 +1110,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -1118,7 +1118,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -1126,7 +1126,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -1157,7 +1157,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -1165,7 +1165,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -1173,7 +1173,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -1181,7 +1181,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -1212,7 +1212,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -1220,7 +1220,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -1228,7 +1228,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -1236,7 +1236,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::
@@ -1266,7 +1266,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"monthly")
+p<-generer_graphique(actif,"monthly",toCache=T)
 p
 
 ```
@@ -1274,7 +1274,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"annual")
+p<-generer_graphique(actif,"annual",toCache=T)
 p
 
 ```
@@ -1282,7 +1282,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"semiannual")
+p<-generer_graphique(actif,"semiannual",toCache=T)
 p  
    
 ```
@@ -1290,7 +1290,7 @@ p
 
 ::: g-col-4
 ```{r}
-p<-generer_graphique(actif,"quarterly")
+p<-generer_graphique(actif,"quarterly",toCache=T)
 p      
 ```
 :::

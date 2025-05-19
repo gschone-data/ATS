@@ -4,7 +4,7 @@ library(dplyr)
 library(plotly)
 library(lubridate)
 
-generer_graphique <- function(symbole, periode,toCache=F) {
+generer_graphique <- function(symbole, periode,toCache=FALSE) {
   symbole_bis=symbole
   if(substr(symbole,1,1)=="^"){symbole_bis=substr(symbole,2,nchar(symbole))}
   
@@ -154,4 +154,5 @@ generer_graphique <- function(symbole, periode,toCache=F) {
   }
 
 # Exemple d'utilisation pour différentes périodes
-generer_graphique("ALNOV.PA", "annual",toCache = T)
+
+#generer_graphique("ALNOV.PA", "annual",toCache = F)
