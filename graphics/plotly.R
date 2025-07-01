@@ -11,12 +11,14 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
   # Téléchargement des données
   
   if(toCache==TRUE){
-    data<-readRDS("tempo/data.RDS")}
+    data<-readRDS("tempo/data.RDS")
+    }
   else{
     tmp<-getSymbols(symbole, auto.assign = TRUE)
     data <- get(symbole_bis) |> as.data.frame()
     saveRDS(data,"tempo/data.RDS")
   }
+  
   # Préparation des données
   data |>  
     mutate(Date=row.names(data)) |> 
@@ -27,7 +29,20 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
       Close = paste0(symbole_bis, ".Close")
     ) |> 
     mutate(Date = as.Date(Date)) |> 
-    filter(complete.cases(Open, High, Low, Close))->data
+    filter(complete.cases(Open, High, Low, Close)) |> 
+    select(Date,Open,High,Low,Close)->data
+  
+  #ajout date du jour
+  data |> tail(1)->data_last
+  if(data_last$Date!=Sys.Date()){
+    data_new<-data.frame(
+      Date=Sys.Date(),
+      Open=data_last$Close,
+      High=data_last$Close,
+      Low=data_last$Close,
+      Close=data_last$Close)
+      rbind(data,data_new)->data
+}
   
   # Conversion de période
   data_period <- data |> 
@@ -49,7 +64,7 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
       Close = last(Close),
       .groups = "drop"
     )
-  nb_ligne<-min(nrow(data_period),30)
+  nb_ligne<-min(nrow(data_period),31)
   nb_boll<-min(nb_ligne,20)
   nb_m7<-min(nb_ligne,7)
   
@@ -64,7 +79,7 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
       SAR = as.vector(TTR::SAR(cbind(High, Low), accel = c(0.02, 0.2)))
     )
 
-  data_tech|> tail(30)->data_tech
+  data_tech|> tail(31)->data_tech
  
   data_tech <- data_tech|>
     mutate(
@@ -76,7 +91,7 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
     )->data_tech
   data_tech <- data_tech |> 
     mutate(
-      x_pos = 1:nb_ligne,  # Position numérique du facteur
+      x_pos = 1:(nb_ligne),  # Position numérique du facteur
       x_open = x_pos - 0.3,        # Décalage à gauche pour Open
       x_close = x_pos + 0.3        # Décalage à droite pour Close
     )
@@ -123,6 +138,9 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
     
     # indicateurs
     geom_segment(aes(y = lag(M7), yend=M7,x=x_pos-1,xend=x_pos, color = color_M7),linewidth = 0.6) +
+    #indicateurs anticipés :
+    
+    
     
     # SAR avec couleurs dynamiques
     geom_point(aes(y = SAR, color = color_SAR),shape = 18, size = 1) +
@@ -155,4 +173,4 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
 
 # Exemple d'utilisation pour différentes périodes
 
-#generer_graphique("ALNOV.PA", "annual",toCache = F)
+generer_graphique("ALTHX.PA", "quarterly",toCache = F)
