@@ -7,6 +7,18 @@ library(lubridate)
 generer_graphique <- function(symbole, periode,toCache=FALSE) {
   symbole_bis=symbole
   if(substr(symbole,1,1)=="^"){symbole_bis=substr(symbole,2,nchar(symbole))}
+  #gestion periode
+  ceiling_ats<-function(x,periode){
+    
+    switch(periode,
+          "daily" = floor_date(ceiling_date(x,"seconds"),"day"),
+          "weekly"=floor_date(ceiling_date(x,"weeks"),"day"),
+          "monthly" =floor_date(ceiling_date(Date, "month"),"day"),
+          "quarterly" =floor_date(ceiling_date(Date, "quarter"),"day"),
+          "semiannual" = floor_date(ceiling_date(Date, "6 months"),"day"),
+          "annual"=floor_date(ceiling_date(Date, "year"),"day"))
+  }
+  
   
   # Téléchargement des données
   
@@ -33,8 +45,11 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
     select(Date,Open,High,Low,Close)->data
   
   #ajout date du jour
-  data |> tail(1)->data_last
-  if(data_last$Date!=Sys.Date()){
+  data |> tail(1) ->data_last
+  data_last_per<-ceiling_ats(as.Date(data_last$Date),periode)
+  sys_per<-ceiling_ats(Sys.Date(),periode)
+  ajout_val=0
+  if(data_last_per!=sys_per){
     data_new<-data.frame(
       Date=Sys.Date(),
       Open=data_last$Close,
@@ -42,20 +57,14 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
       Low=data_last$Close,
       Close=data_last$Close)
       rbind(data,data_new)->data
+      ajout_val=1
 }
   
   # Conversion de période
   data_period <- data |> 
     mutate(
-      Period = case_when(
-        periode == "daily" ~ Date,
-        periode == "weekly" ~ ceiling_date(Date, "week"),
-        periode == "monthly" ~ ceiling_date(Date, "month"),
-        periode == "quarterly" ~ ceiling_date(Date, "quarter"),
-        periode == "semiannual" ~ ceiling_date(Date, "6 months"),
-        periode == "annual" ~ ceiling_date(Date, "year")
-      )
-    ) |> 
+      Period=ceiling_ats(Date,periode)
+      )|> 
     group_by(Period) |> 
     summarise(
       Open = first(Open),
@@ -64,7 +73,7 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
       Close = last(Close),
       .groups = "drop"
     )
-  nb_ligne<-min(nrow(data_period),31)
+  nb_ligne<-min(nrow(data_period),30+ajout_val)
   nb_boll<-min(nb_ligne,20)
   nb_m7<-min(nb_ligne,7)
   
@@ -79,7 +88,7 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
       SAR = as.vector(TTR::SAR(cbind(High, Low), accel = c(0.02, 0.2)))
     )
 
-  data_tech|> tail(31)->data_tech
+  data_tech|> tail(30+ajout_val)->data_tech
  
   data_tech <- data_tech|>
     mutate(
@@ -140,7 +149,7 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
     geom_segment(aes(y = lag(M7), yend=M7,x=x_pos-1,xend=x_pos, color = color_M7),linewidth = 0.6) +
     #indicateurs anticipés :
     
-    
+  
     
     # SAR avec couleurs dynamiques
     geom_point(aes(y = SAR, color = color_SAR),shape = 18, size = 1) +
@@ -165,12 +174,15 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
       geom_segment(aes(y = lag(BB_dn), yend=BB_dn,x=x_pos-1,xend=x_pos, color = color_dn),linewidth = 0.6)}
   # Conversion en graphique interactif avec Plotly
  
-   ggplotly(p,tooltip="tooltip_text")
     
   
   
-  }
+   ggplotly(p,tooltip="tooltip_text")
+   
+   
+   
+     
+}
 
 # Exemple d'utilisation pour différentes périodes
-
-generer_graphique("ALTHX.PA", "quarterly",toCache = F)
+generer_graphique("ALTHX.PA", "weekly",toCache  =T)
