@@ -6,4 +6,4 @@ indus/
 .quarto/
 docs/
 /.quarto/
-*.RDS
+.RDS
