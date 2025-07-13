@@ -1,33 +1,38 @@
-analyse_opportunite<-function(data_tech_tail,periode,symbole_bis){
-  px<-data_tech_tail$Close
-  ecart_m20<-px-data_tech_tail$M20
-  ecart_sar<-px-data_tech_tail$SAR
-  ecart_BB_up<-px-data_tech_tail$BB_up
-  ecart_BB_dn<-px-data_tech_tail$BB_dn
+analyse_opportunite<-function(periode,type){
+data_tech<-readRDS("temp/data_tech.RDS") |> tail(1)
+  txt=""
+  px<-data_tech$Close
+  ecart_m20<-px-data_tech$M20
+  ecart_sar<-px-data_tech$SAR
+  ecart_BB_up<-px-data_tech$BB_up
+  ecart_BB_dn<-px-data_tech$BB_dn
   
   
   rouge="#FF0000"  
   bleu="#0000FF"
   
-  seuil=0.05
-  
-  for(type in c("M7","M20","SAR","BB_up","BB_dn")){
-    ecart<-px-data_tech_tail |> select(all_of(type)) |> pull()
-    if (data_tech_tail |> select(all_of(paste0("color_",type))) |> pull()==rouge & ecart<0 & ecart>-seuil){
-      txt<-paste0(symbole_bis,"--",periode,"--","short possible ",type)
-    }
-    if (data_tech_tail |> select(all_of(paste0("color_",type))) |> pull()==bleu & ecart>0 & ecart<-seuil){
-      txt<-paste0(symbole_bis,"--",periode,"--","short possible ",type)
-    }
-      
-      
-    }
-  
-  if (nb_round==4){
-  
+  switch(type,
+         "F"=seuil<-0.01,
+         "A"=seuil<-0.05*(data_tech |> tail(1) |> select(Close)|> pull()),
+          "I"=seuil<-50)
 
-  output<<-paste0(output,"","\\n")
+  for(indic in c("M7","M20","SAR","BB_up","BB_dn")){
+    if(!is.na(data_tech |> select(all_of(indic)) |> pull())) {
+    ecart<-px-data_tech |> select(all_of(indic)) |> pull()
+    if (data_tech |> select(all_of(paste0("color_",indic))) |> pull()==F & ecart<0 & ecart>-seuil){
+      txt<-paste0(txt,actif,"--",periode,"--","short possible ",indic,"<br>")
+    }
+    if (data_tech |> select(all_of(paste0("color_",indic))) |> pull()==T & ecart>0 & ecart<seuil){
+      txt<-paste0(txt,actif,"--",periode,"--","buy possible ",indic,"<br>")
+    }
+      
+      
   }
-}
-data_tech_tail<-data_tech |> tail(1)
-output<-""
+  }
+
+    output<<-paste0(output,txt,"<br>")
+   
+    }
+
+
+

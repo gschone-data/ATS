@@ -1,0 +1,69 @@
+---
+title: "test"
+format: 
+  html:  
+    page-layout: custom
+    css: styles.css
+    self-contained: false
+---
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+source("graphics/plotly.R")
+source("opportunite.R")
+output<-""
+```
+
+```{r}
+procedure<-function(periode){
+toCache_=ifelse(periode=="daily",F,T)
+p<-generer_graphique(actif,periode,toCache=toCache_)
+
+analyse_opportunite(periode = periode,type=type)  
+return(p)
+}
+```
+
+```{r}
+print(Sys.time())
+```
+
+# DEVISES
+```{r}
+type="F"
+```
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::: panel-tabset
+## EURUSD
+
+```{r}
+actif="EURUSD=X"
+```
+
+::::::::: {layout="[[1,1,1],[2,2,2]]"}
+::: {#row-1 .g-col-4}
+```{r}
+periode="daily"
+procedure(periode)
+```
+:::
+
+::: g-col-4
+```{r}
+
+periode="weekly"
+procedure(periode)
+```
+::::::::: 
+:::::::::::::::::::::::::::::::::::::::::::::::::::: 
+
+
+```{r, results='asis'} 
+cat(output)
+```
+

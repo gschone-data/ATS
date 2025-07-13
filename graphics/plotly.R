@@ -3,6 +3,7 @@ library(ggplot2)
 library(dplyr)
 library(plotly)
 library(lubridate)
+library(ggnewscale)
 
 generer_graphique <- function(symbole, periode,toCache=FALSE) {
   symbole_bis=symbole
@@ -12,23 +13,22 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
     
     switch(periode,
           "daily" = floor_date(ceiling_date(x,"seconds"),"day"),
-          "weekly"=floor_date(ceiling_date(x,"weeks"),"day"),
-          "monthly" =floor_date(ceiling_date(Date, "month"),"day"),
-          "quarterly" =floor_date(ceiling_date(Date, "quarter"),"day"),
-          "semiannual" = floor_date(ceiling_date(Date, "6 months"),"day"),
-          "annual"=floor_date(ceiling_date(Date, "year"),"day"))
+          "weekly"=floor_date(ceiling_date(week_start = 5,x,"weeks",change_on_boundary = FALSE),"day"),
+          "monthly" =floor_date(ceiling_date(x, "month"),"day"),
+          "quarterly" =floor_date(ceiling_date(x, "quarter"),"day"),
+          "semiannual" = floor_date(ceiling_date(x, "6 months"),"day"),
+          "annual"=floor_date(ceiling_date(x, "year"),"day"))
   }
   
-  
+
   # Téléchargement des données
   
   if(toCache==TRUE){
-    data<-readRDS("tempo/data.RDS")
-    }
-  else{
+    data<-readRDS("temp/data.RDS")
+    }else{
     tmp<-getSymbols(symbole, auto.assign = TRUE)
     data <- get(symbole_bis) |> as.data.frame()
-    saveRDS(data,"tempo/data.RDS")
+    saveRDS(data,"temp/data.RDS")
   }
   
   # Préparation des données
@@ -89,14 +89,13 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
     )
 
   data_tech|> tail(30+ajout_val)->data_tech
- 
   data_tech <- data_tech|>
     mutate(
-      color_M7 = ifelse(M7 < lag(M7), "#0000FF", "#FF0000"),#|> replace_na("#808080"),
-      color_SAR = ifelse(SAR> Close, "#0000FF", "#FF0000"),#|> replace_na("#808080"),
-      color_M20 = ifelse(M20 < lag(M20), "#0000FF", "#FF0000"),#|> replace_na("#808080"),
-      color_up = ifelse(BB_up < lag(BB_up), "#0000FF", "#FF0000"),#|> replace_na("#808080"),
-      color_dn = ifelse(BB_dn < lag(BB_dn), "#0000FF", "#FF0000")#|> replace_na("#808080")
+      color_M7 = ifelse(M7 <lag(M7),F,T ),#|> replace_na("#808080"),
+      color_SAR = ifelse(SAR> Close, F,T),#|> replace_na("#808080"),
+      color_M20 = ifelse(M20 <lag(M20), F, T),#|> replace_na("#808080"),
+      color_BB_up = ifelse(BB_up < lag(BB_up), F, T),#|> replace_na("#808080"),
+      color_BB_dn = ifelse(BB_dn < lag(BB_dn), F, T)#|> replace_na("#808080")
     )->data_tech
   data_tech <- data_tech |> 
     mutate(
@@ -107,10 +106,10 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
   nb_ok=T
   if (nb_ligne<20){nb_ok=F;data_tech$BB_up=NA;data_tech$BB_dn=NA;data_tech$M20=NA}
   if (nb_ligne<7){data_tech$m7=NA}
+  
+  
+  
   # Ajout du texte pour le tooltip
-  
-  
-  
   #si devise round 4, sinon round 2
   nb_round=4
   if(grepl("\\^",symbole)==TRUE){
@@ -134,10 +133,11 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
   oggy <- as.factor(data_tech$Period)[22]
   jack <- as.factor(data_tech$Period)[9]
   
+  saveRDS(data_tech,"temp/data_tech.RDS")
   # Création du graphique ggplot2
-  p <- ggplot(data_tech,  aes(x = as.factor(Period),text=tooltip_text)) +
+  p <- ggplot(data_tech)+#,  aes(x = as.factor(Period),text=tooltip_text)) +
     # Segments pour High-Low
-    geom_segment(aes(xend = as.factor(Period), y = Low, yend = High), color = "black",linewidth = 0.4) +
+    geom_segment(aes(x=as.factor(Period),xend = as.factor(Period), y = Low, yend = High), color = "black",linewidth = 0.4) +
     
     # Segments Open / close
    
@@ -146,14 +146,16 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
     
     
     # indicateurs
-    geom_segment(aes(y = lag(M7), yend=M7,x=x_pos-1,xend=x_pos, color = color_M7),linewidth = 0.6) +
-    #indicateurs anticipés :
+    geom_segment(aes(y = lag(M7), yend=M7,x=x_pos-1,xend=x_pos,color=color_M7),linewidth = 0.6) +
+ 
+     #indicateurs anticipés :
     
   
     
-    # SAR avec couleurs dynamiques
-    geom_point(aes(y = SAR, color = color_SAR),shape = 18, size = 1) +
+    # # SAR avec couleurs dynamiques
+    geom_point(aes(x=as.factor(Period),y = SAR,color=color_SAR),shape = 18, size = 1) +
     
+   
     #oggy et jack
     geom_vline(xintercept = 23, color = "black", linetype = "solid", linewidth = 0.5,alpha=0.2) +
     geom_vline(xintercept = 10, color = "black", linetype = "solid", linewidth = 0.5,alpha=0.2) +
@@ -169,20 +171,21 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
     theme(legend.position = "none")
   if(nb_ok==T){
     p<-p+
-      geom_segment(aes(y = lag(M20), yend=M20,x=x_pos-1,xend=x_pos, color = color_M20),linewidth = 0.6)+ 
-      geom_segment(aes(y = lag(BB_up), yend=BB_up,x=x_pos-1,xend=x_pos, color = color_up),linewidth = 0.6)+
-      geom_segment(aes(y = lag(BB_dn), yend=BB_dn,x=x_pos-1,xend=x_pos, color = color_dn),linewidth = 0.6)}
-  # Conversion en graphique interactif avec Plotly
+      geom_segment(aes(y = lag(M20), yend=M20,x=x_pos-1,xend=x_pos,color=color_M20),linewidth = 0.6)+
+      geom_segment(aes(y = lag(BB_up), yend=BB_up,x=x_pos-1,xend=x_pos, color = color_BB_up),linewidth = 0.6)+
+   
+      geom_segment(aes(y = lag(BB_dn), yend=BB_dn,x=x_pos-1,xend=x_pos,color=color_BB_dn),linewidth = 0.6)
+  }
  
-    
-  
-  
+#  Conversion en graphique interactif avec Plotly
    ggplotly(p,tooltip="tooltip_text")
    
-   
-   
-     
-}
 
-# Exemple d'utilisation pour différentes périodes
-generer_graphique("ALTHX.PA", "weekly",toCache  =T)
+}
+# toCache=T
+# symbole="ALTHX.PA"
+# periode="semiannual"
+# # Exemple d'utilisation pour différentes périodes
+# generer_graphique(actif, "weekly",toCache  =T)
+
+ 
