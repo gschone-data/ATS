@@ -18,17 +18,17 @@ data_tech<-readRDS("temp/data_tech.RDS") |> tail(1)
     if(!is.na(data_tech |> select(all_of(indic)) |> pull())) {
     ecart<-px-data_tech |> select(all_of(indic)) |> pull()
     if (data_tech |> select(all_of(paste0("color_",indic))) |> pull()==F & ecart<0 & ecart>-seuil){
-      txt<-paste0(txt,actif,"--",periode,"--","short possible ",indic)
+      txt<-paste0(txt,actif,"--",periode,"--","short possible ",indic,"<br>")
     }
     if (data_tech |> select(all_of(paste0("color_",indic))) |> pull()==T & ecart>0 & ecart<seuil){
-      txt<-paste0(txt,actif,"--",periode,"--","buy possible ",indic)
+      txt<-paste0(txt,actif,"--",periode,"--","buy possible ",indic,"<br>")
     }
       
       
   }
   }
 
-    output<<-paste0(output,txt)
+    output<<-paste0(output,txt,"<br>")
    
     }
 
