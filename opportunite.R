@@ -8,11 +8,9 @@ data_tech<-readRDS("temp/data_tech.RDS") |> tail(1)
   ecart_BB_dn<-px-data_tech$BB_dn
   
   
-  rouge="#FF0000"  
-  bleu="#0000FF"
-  
   switch(type,
-         "F"=seuil<-0.01,
+         "F"=seuil<-0.0020,
+         "JPY"=seuil<-0.2,
          "A"=seuil<-0.05*(data_tech |> tail(1) |> select(Close)|> pull()),
           "I"=seuil<-50)
 
@@ -20,17 +18,17 @@ data_tech<-readRDS("temp/data_tech.RDS") |> tail(1)
     if(!is.na(data_tech |> select(all_of(indic)) |> pull())) {
     ecart<-px-data_tech |> select(all_of(indic)) |> pull()
     if (data_tech |> select(all_of(paste0("color_",indic))) |> pull()==F & ecart<0 & ecart>-seuil){
-      txt<-paste0(txt,actif,"--",periode,"--","short possible ",indic,"<br>")
+      txt<-paste0(txt,actif,"--",periode,"--","short possible ",indic)
     }
     if (data_tech |> select(all_of(paste0("color_",indic))) |> pull()==T & ecart>0 & ecart<seuil){
-      txt<-paste0(txt,actif,"--",periode,"--","buy possible ",indic,"<br>")
+      txt<-paste0(txt,actif,"--",periode,"--","buy possible ",indic)
     }
       
       
   }
   }
 
-    output<<-paste0(output,txt,"<br>")
+    output<<-paste0(output,txt)
    
     }
 

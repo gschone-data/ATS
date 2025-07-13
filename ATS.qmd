@@ -95,6 +95,7 @@ procedure(periode)
 ## USDJPY
 
 ```{r}
+type="JPY"
 actif="USDJPY=X"
 ```
 ::::::::: {layout="[[1,1,1],[2,2,2]]"}
@@ -147,6 +148,7 @@ procedure(periode)
 ## GBPUSD
 
 ```{r}
+type="F"
 actif="GBPUSD=X"
 ```
 ::::::::: {layout="[[1,1,1],[2,2,2]]"}
@@ -301,6 +303,7 @@ procedure(periode)
 ## USDCNY
 
 ```{r}
+type="JPY"
 actif="USDCNY=X"
 ```
 
@@ -353,6 +356,7 @@ procedure(periode)
 ## USDCHF
 
 ```{r}
+type="F"
 actif="USDCHF=X"
 ```
 ::::::::: {layout="[[1,1,1],[2,2,2]]"}

@@ -42,7 +42,7 @@ type="F"
 ## EURUSD
 
 ```{r}
-actif="EURUSD=X"
+actif="EURGBP=X"
 ```
 
 ::::::::: {layout="[[1,1,1],[2,2,2]]"}
