@@ -3,7 +3,7 @@ library(ggplot2)
 library(dplyr)
 library(plotly)
 library(lubridate)
-library(ggnewscale)
+
 
 generer_graphique <- function(symbole, periode,toCache=FALSE) {
   symbole_bis=symbole
