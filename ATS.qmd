@@ -21,10 +21,8 @@ output<-""
 
 ```{r}
 procedure<-function(periode){
-toCache_=ifelse(periode=="daily",F,T)
-p<-generer_graphique(actif,periode,toCache=toCache_)
-
-analyse_opportunite(periode = periode,type=type)  
+p<-generer_graphique(actif,periode)
+if(!is.null(p)){analyse_opportunite(periode = periode,type=type)}
 return(p)
 }
 ```
@@ -86,15 +84,16 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+
+:::::::::
 
 
 ## USDJPY
@@ -144,19 +143,18 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
+
+```{r, results='asis' }
+cat(output)
+output<-""
+```
+
 :::::::::
-```{r, results='asis' }
-cat(output)
-output<-""
-```
-```{r, results='asis' }
-cat(output)
-output<-""
-```
+
 
 
 
@@ -207,16 +205,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
-
+:::::::::
 
 
 ## AUDUSD
@@ -266,19 +263,17 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
+
+```{r, results='asis' }
+cat(output)
+output<-""
+```
 :::::::::
-```{r, results='asis' }
-cat(output)
-output<-""
-```
-```{r, results='asis' }
-cat(output)
-output<-""
-```
+
 
 
 
@@ -329,17 +324,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
-
+:::::::::
 
 ## USDCNY
 
@@ -389,16 +382,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
 
 
 ## USDCHF
@@ -448,18 +440,16 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
-
+:::::::::
 
 ## EURGBP
 
@@ -508,18 +498,17 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
 
+::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 
@@ -576,17 +565,16 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
+
 
 
 ## DJ
@@ -636,17 +624,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
-
+:::::::::
 
 
 ## NASDAQ
@@ -696,17 +682,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
-
+:::::::::
 
 
 ## DAX
@@ -756,18 +740,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
-
+:::::::::
 
 
 ## S&P 500
@@ -817,17 +798,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
-
+:::::::::
 
 
 ## IBEX
@@ -877,16 +856,17 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-:::::::::::::::::::::::::::::::
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
+
+:::::::::::::::::::::::::::::::
 
 
 # COMO
@@ -944,16 +924,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
-
+:::::::::
 
 
 ## SILVER
@@ -1003,16 +982,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
 
 
 ## COPPER
@@ -1062,16 +1040,16 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
+
 
 
 ## OIL
@@ -1121,18 +1099,18 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
-::: 
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
 
+
+::: 
 
 
 # ACTIONS
@@ -1185,16 +1163,16 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
+
 
 
 ## ODET
@@ -1244,17 +1222,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
 
 
 ## THERANEXUS
@@ -1304,16 +1280,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
 
 
 
@@ -1370,14 +1345,11 @@ periode="monthly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
-
+:::::::::
 
 ## LYXOR ETF
 
@@ -1426,16 +1398,16 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
+
 
 
 ## CREDIT AGRICOLE
@@ -1485,16 +1457,15 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
-:::::::::
-
 ```{r, results='asis' }
 cat(output)
 output<-""
 ```
+:::::::::
 
 
 ## AIR LIQUIDE
@@ -1544,21 +1515,19 @@ procedure(periode)
 
 ::: g-col-4
 ```{r}
-periode="monthly"
+periode="quarterly"
 procedure(periode)   
 ```
 :::
+```{r, results='asis' }
+cat(output)
+output<-""
+```
 :::::::::
-
-
-
 
 
 ::::::::::::::::::::::::::::::: 
 
 
 
-```{r, results='asis' }
-print(output)
-```
 

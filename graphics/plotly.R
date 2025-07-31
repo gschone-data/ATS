@@ -3,35 +3,58 @@ library(ggplot2)
 library(dplyr)
 library(plotly)
 library(lubridate)
+library(stringr)
+
+recup_symbol<-function(symbole){
+  symbole_bis=symbole
+  if(substr(symbole,1,1)=="^"){symbole_bis=substr(symbole,2,nchar(symbole))}
+  tmp<-tryCatch(
+    {getSymbols(symbole, auto.assign = TRUE)},
+    error=function(e){
+      return(NULL)
+    }
+  )
+  if(is.null(tmp)){
+    return(NULL)
+  }
+  return(get(symbole_bis))}
+  
 
 
-generer_graphique <- function(symbole, periode,toCache=FALSE) {
+ceiling_ats<-function(x,periode){
+  
+  switch(periode,
+         "daily" = floor_date(ceiling_date(x,"seconds"),"day"),
+         "weekly"=floor_date(ceiling_date(week_start = 5,x,"weeks",change_on_boundary = FALSE),"day"),
+         "monthly" =floor_date(ceiling_date(x, "month"),"day"),
+         "quarterly" =floor_date(ceiling_date(x, "quarter"),"day"),
+         "semiannual" = floor_date(ceiling_date(x, "6 months"),"day"),
+         "annual"=floor_date(ceiling_date(x, "year"),"day"))
+}
+
+
+
+generer_graphique <- function(symbole, periode) {
   symbole_bis=symbole
   if(substr(symbole,1,1)=="^"){symbole_bis=substr(symbole,2,nchar(symbole))}
   #gestion periode
-  ceiling_ats<-function(x,periode){
-    
-    switch(periode,
-          "daily" = floor_date(ceiling_date(x,"seconds"),"day"),
-          "weekly"=floor_date(ceiling_date(week_start = 5,x,"weeks",change_on_boundary = FALSE),"day"),
-          "monthly" =floor_date(ceiling_date(x, "month"),"day"),
-          "quarterly" =floor_date(ceiling_date(x, "quarter"),"day"),
-          "semiannual" = floor_date(ceiling_date(x, "6 months"),"day"),
-          "annual"=floor_date(ceiling_date(x, "year"),"day"))
-  }
   
-
-  # Téléchargement des données
-  
-  if(toCache==TRUE){
-    data<-readRDS("temp/data.RDS")
-    }else{
-    tmp<-getSymbols(symbole, auto.assign = TRUE)
-    data <- get(symbole_bis) |> as.data.frame()
+  data<-readRDS("temp/data.RDS")
+  if(is.null(data)){
+    data<-recup_symbol(symbole) |> as.data.frame()
     saveRDS(data,"temp/data.RDS")
+    if(is.null(data)){return(NULL)}
+    
   }
-  
-  # Préparation des données
+  symbole_cache<-str_replace(colnames(data)[1],".Open","")
+  if(symbole_cache!=symbole_bis){
+    data<-recup_symbol(symbole) |> as.data.frame()
+    saveRDS(data,"temp/data.RDS")
+    if(is.null(data)){return(NULL)}
+    
+  }  
+    # Téléchargement des données
+   # Préparation des données
   data |>  
     mutate(Date=row.names(data)) |> 
     rename(
@@ -135,7 +158,7 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
   
   saveRDS(data_tech,"temp/data_tech.RDS")
   # Création du graphique ggplot2
-  p <- ggplot(data_tech)+#,  aes(x = as.factor(Period),text=tooltip_text)) +
+  p <- ggplot(data_tech,aes(text=tooltip_text))+
     # Segments pour High-Low
     geom_segment(aes(x=as.factor(Period),xend = as.factor(Period), y = Low, yend = High), color = "black",linewidth = 0.4) +
     
@@ -147,11 +170,7 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
     
     # indicateurs
     geom_segment(aes(y = lag(M7), yend=M7,x=x_pos-1,xend=x_pos,color=color_M7),linewidth = 0.6) +
- 
-     #indicateurs anticipés :
-    
-  
-    
+
     # # SAR avec couleurs dynamiques
     geom_point(aes(x=as.factor(Period),y = SAR,color=color_SAR),shape = 18, size = 1) +
     
@@ -176,16 +195,17 @@ generer_graphique <- function(symbole, periode,toCache=FALSE) {
    
       geom_segment(aes(y = lag(BB_dn), yend=BB_dn,x=x_pos-1,xend=x_pos,color=color_BB_dn),linewidth = 0.6)
   }
+    
+  
  
 #  Conversion en graphique interactif avec Plotly
-   ggplotly(p,tooltip="tooltip_text")
-   
+   ggplotly(p,tooltip =c("tooltip_text"))
 
 }
 # toCache=T
-# symbole="ALTHX.PA"
-# periode="semiannual"
-# # Exemple d'utilisation pour différentes périodes
-# generer_graphique(actif, "weekly",toCache  =T)
-
+ actif="ALTHX.PA"
+# # periode="semiannual"
+# # # Exemple d'utilisation pour différentes périodes
+generer_graphique(actif, "daily")
+#generer_graphique("blabla","daily",toCache = F)
  

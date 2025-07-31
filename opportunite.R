@@ -27,10 +27,10 @@ data_tech<-readRDS("temp/data_tech.RDS") |> tail(1)
       
   }
   }
-
+if(nchar(txt)>0){
     output<<-paste0(output,txt,"<br>")
-   
-    }
+}
+}
 
 
 
