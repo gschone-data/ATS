@@ -1173,7 +1173,62 @@ output<-""
 ```
 :::::::::
 
+## WAVESTONE
 
+```{r}
+actif="WAVE.PA"
+```
+
+::::::::: {layout="[[1,1,1],[2,2,2]]"}
+::: {#row-1 .g-col-4}
+```{r}
+periode="daily"
+procedure(periode)
+```
+:::
+
+::: g-col-4
+```{r}
+
+periode="weekly"
+procedure(periode)
+```
+:::
+
+::: g-col-4
+```{r}
+periode="monthly"
+procedure(periode)
+
+```
+:::
+
+::: {#row-2 .g-col-4}
+```{r}
+
+periode="annual"
+procedure(periode)
+```
+:::
+
+::: g-col-4
+```{r}
+periode="semiannual"
+procedure(periode)
+```
+:::
+
+::: g-col-4
+```{r}
+periode="quarterly"
+procedure(periode)   
+```
+:::
+```{r, results='asis' }
+cat(output)
+output<-""
+```
+:::::::::
 
 ## ODET
 
