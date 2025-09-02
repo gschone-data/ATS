@@ -4,7 +4,7 @@ env:
 
 on:
   schedule:
-    - cron: '0 0,3,6,9,12,15,18,21 * * *'  # UTC : 00h, 03h..., 21h tous les jours
+    - cron: '0 1,4,7,10,13,16,19,22 * * *'  # UTC : 00h, 03h..., 21h tous les jours
   workflow_dispatch:  # permet aussi un déclenchement manuel
 
 jobs:
