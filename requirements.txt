@@ -1,6 +1,6 @@
 pandas
 yfinance
-yaml
+pyyaml
 datetime
 pyarrow
 os
