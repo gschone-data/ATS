@@ -1,0 +1,6 @@
+pandas
+yfinance
+yaml
+datetime
+pyarrow
+os

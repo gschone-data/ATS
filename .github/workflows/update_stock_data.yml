@@ -25,7 +25,7 @@ jobs:
       run: python intraday/recup.py
 
     - name: Upload csv artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: stock-data-csv
         path: donnees.csv
