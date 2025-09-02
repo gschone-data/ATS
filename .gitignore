@@ -7,3 +7,6 @@ indus/
 docs/
 /.quarto/
 .RDS
+**/*.quarto_ipynb
+my-venv/
+.vscode/
