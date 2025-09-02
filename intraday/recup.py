@@ -25,7 +25,7 @@ for symbol in symbols:
 df_new = pd.DataFrame(data)
 
 try:
-    df_old = pd.read_csv('donnees.csv')
+    df_old = pd.read_csv('artifacts/stock-data-csv/donnees.csv')
     df_combined = pd.concat([df_old, df_new])
     df = df_combined.sort_values(['symbole','date','heure']).groupby('symbole', group_keys=False).tail(50)
 except FileNotFoundError:

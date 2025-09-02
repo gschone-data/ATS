@@ -1,4 +1,6 @@
 name: Update Stock Data
+env:
+  GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
 
 on:
   schedule:
@@ -28,4 +30,3 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: stock-data-csv
-        path: donnees.csv
