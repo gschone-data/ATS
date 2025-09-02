@@ -39,9 +39,7 @@ for a in artifacts:
         break
 
 if artifact_id is None:
-    print(f"Artifact nommé '{ARTIFACT_NAME}' non trouvé dans la run {run_id}")
-    exit(0)
-    
+    raise ImportError(f"Artifact nommé '{ARTIFACT_NAME}' non trouvé dans la run {run_id}")
 # 3. Télécharger le ZIP de l’artifact
 download_url = f"https://api.github.com/repos/{OWNER}/{REPO}/actions/artifacts/{artifact_id}/zip"
 zip_resp = requests.get(download_url, headers=headers)

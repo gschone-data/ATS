@@ -4,9 +4,6 @@ import yaml
 from datetime import datetime
 import os
 import sys
-import gestion_artefact
-
-
 
 path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
 
@@ -27,12 +24,15 @@ for symbol in symbols:
         "close": info['Close'].values
     })
 df_new = pd.DataFrame(data)
-
 try:
+    import gestion_artefact
     df_old = pd.read_csv('artifacts/stock-data-csv/donnees.csv')
     df_combined = pd.concat([df_old, df_new])
     df = df_combined.sort_values(['symbole','date','heure']).groupby('symbole', group_keys=False).tail(50)
-except FileNotFoundError:
+except ImportError as e:
+    print(e)
     df = df_new
+    # Ici, le reste du script continue ou tu peux ajouter un autre comportement
+
 
 df.to_csv('donnees.csv',index=False)
