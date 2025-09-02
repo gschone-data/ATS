@@ -1,6 +1,6 @@
 name: Update Stock Data
 env:
-  GITHUB_TOKEN: ${{ secrets.TOKEN_GIT }}
+  TOKEN_GIT: ${{ secrets.TOKEN_GIT }}
 
 on:
   schedule:
