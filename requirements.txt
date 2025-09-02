@@ -3,4 +3,3 @@ yfinance
 pyyaml
 datetime
 pyarrow
-os
