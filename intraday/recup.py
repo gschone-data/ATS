@@ -2,11 +2,12 @@ import pandas as pd
 import yfinance as yf
 import yaml
 from datetime import datetime
-import pyarrow as pa
-import pyarrow.parquet as pq
-open('~/ATS/ATS/intraday/liste.yaml', 'r') 
+import os
+
+path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
+
 # Lire les symboles depuis le yaml
-with open("~/ATS/ATS/intraday/liste.yaml", 'r') as f:
+with open(os.path.join(path, 'liste.yaml')) as f:
     symbols = yaml.safe_load(f)['symbols']
 
 now = datetime.now()
@@ -19,18 +20,15 @@ for symbol in symbols:
         "symbole": symbol,
         "date": now.strftime("%Y-%m-%d"),
         "heure": now.strftime("%H:%M"),
-        "close": info['Close'].values,
-        "high": info['High'].values,
-        "low": info['Low'].values
+        "close": info['Close'].values
     })
-
 df_new = pd.DataFrame(data)
 
 try:
-    df_old = pd.read_parquet('donnees.parquet')
-    df = pd.concat([df_old, df_new]).sort_values(['date','heure'])
-    df = df.tail(50)
+    df_old = pd.read_csv('donnees.csv')
+    df_combined = pd.concat([df_old, df_new])
+    df = df_combined.sort_values(['symbole','date','heure']).groupby('symbole', group_keys=False).tail(50)
 except FileNotFoundError:
     df = df_new
 
-df.to_parquet('donnees.parquet')
+df.to_csv('donnees.csv',index=False)

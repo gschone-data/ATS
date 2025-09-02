@@ -1,0 +1,31 @@
+name: Update Stock Data
+
+on:
+  schedule:
+    - cron: '0 0,3,6,9,12,15,18,21 * * *'  # UTC : 00h, 03h..., 21h tous les jours
+  workflow_dispatch:  # permet aussi un déclenchement manuel
+
+jobs:
+  update_data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run stock data script
+      run: python intraday/recup.py
+
+    - name: Upload csv artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: stock-data-csv
+        path: donnees.csv
