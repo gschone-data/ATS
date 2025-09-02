@@ -3,6 +3,10 @@ import yfinance as yf
 import yaml
 from datetime import datetime
 import os
+import sys
+import gestion_artefact
+
+
 
 path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
 
