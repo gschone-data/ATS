@@ -24,7 +24,7 @@ runs = runs_resp.json()["workflow_runs"]
 if not runs:
     raise Exception("Aucune exécution du workflow trouvée.")
 
-run_id = runs[0]["id"]  # prendre la dernière run (la plus récente)
+run_id = runs[1]["id"]  # prendre la dernière run (la plus récente)
 
 # 2. Lister les artifacts de la run
 artifacts_url = f"https://api.github.com/repos/{OWNER}/{REPO}/actions/runs/{run_id}/artifacts"
