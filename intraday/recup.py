@@ -4,6 +4,7 @@ import yaml
 from datetime import datetime
 import os
 import sys
+from gestion_artefact import load_intraday
 
 path = os.path.abspath(os.path.join(os.path.dirname(__file__),".."))
 
@@ -24,9 +25,8 @@ for symbol in symbols:
         "close": info['Close'].values
     })
 df_new = pd.DataFrame(data)
-try:
-    import gestion_artefact
-    df_old = pd.read_csv('artifacts/stock-data-csv/donnees.csv')
+try: 
+    df_old=load_intraday()
     df_combined = pd.concat([df_old, df_new])
     df = df_combined.sort_values(['symbole','date','heure']).groupby('symbole', group_keys=False).tail(50)
 except ImportError as e:
