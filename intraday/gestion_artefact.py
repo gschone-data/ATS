@@ -26,8 +26,9 @@ def load_intraday():
     if not runs:
         raise Exception("Aucune exécution du workflow trouvée.")
 
-    run_id = runs[0]["id"]  # prendre la dernière run (la plus récente)
-
+    run_id = runs[1]["id"]  # prendre la dernière run (la plus récente)  
+    #- si on met 0 on récupère le run en cours donc pas d'artefact
+    
     # 2. Lister les artifacts de la run
     artifacts_url = f"https://api.github.com/repos/{OWNER}/{REPO}/actions/runs/{run_id}/artifacts"
     artifacts_resp = requests.get(artifacts_url, headers=headers)
