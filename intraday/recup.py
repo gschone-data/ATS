@@ -27,12 +27,12 @@ for symbol in symbols:
 df_new = pd.DataFrame(data)
 try: 
     df_old=load_intraday()
+    df_old=df_old[pd.to_datetime(df_old['date']).dt.weekday.isin([0,1,2,3,4])] # on garde que les jours de semain
     df_combined = pd.concat([df_old, df_new])
     df = df_combined.sort_values(['symbole','date','heure']).groupby('symbole', group_keys=False).tail(50)
 except ImportError as e:
     print(e)
     df = df_new
-    # Ici, le reste du script continue ou tu peux ajouter un autre comportement
-
+    
 
 df.to_csv('donnees.csv',index=False)

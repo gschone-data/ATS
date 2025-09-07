@@ -10,3 +10,5 @@ docs/
 **/*.quarto_ipynb
 my-venv/
 .vscode/
+donnees.csv
+__pycache__/
